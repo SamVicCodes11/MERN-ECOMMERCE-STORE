@@ -9,10 +9,16 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const { login, loading } = useUserStore();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    login(email, password);
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  const success = await login(email, password);
+
+  if (success) {
+    setEmail("");
+    setPassword("");
+  }
+};
+
 
   return (
     <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
