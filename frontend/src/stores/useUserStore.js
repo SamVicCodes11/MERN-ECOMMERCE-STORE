@@ -6,6 +6,7 @@ export const useUserStore = create((set, get) => ({
   user: null,
   loading: false,
   checkingAuth: true,
+  hasAttemptedAuthCheck: false,
 
   signup: async ({ name, email, password, confirmPassword }) => {
     set({ loading: true });
@@ -55,16 +56,26 @@ export const useUserStore = create((set, get) => ({
     }
   },
 
-
   checkAuth: async () => {
     set({ checkingAuth: true });
+
     try {
       const response = await axios.get("/auth/profile");
-      set({ user: response.data, checkingAuth: false });
+      set({
+        user: response.data,
+        checkingAuth: false,
+        hasAttemptedAuthCheck: true,
+      });
     } catch (error) {
+      const { hasAttemptedAuthCheck } = get();
+
+      set({ checkingAuth: false, user: null, hasAttemptedAuthCheck: true });
+
+      if (hasAttemptedAuthCheck) {
+        toast.error("Session expired. Please login again.");
+      }
+
       console.log(error.message);
-      set({ checkingAuth: false, user: null });
-      toast.error("Session expired. Please login again.");
     }
   },
 
