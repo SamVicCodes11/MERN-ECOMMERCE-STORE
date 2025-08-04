@@ -16,19 +16,10 @@ const SignUpPage = () => {
 
   // const loading = false
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    const success = await signup(formData);
-
-    if (success) {
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-    }
+    console.log(formData);
+    signup(formData);
   };
 
   return (
@@ -96,7 +87,7 @@ const SignUpPage = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  className="block w-full px-3 py-2 pl-10 placeholder-gray-400 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+                  className="block w-full px-3 py-2 pl-10 placeholder-gray-400 bg-gray-700 border border-gray-600 rounded-md shadow-sm  focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                   placeholder="you@example.com"
                 />
               </div>
@@ -121,7 +112,7 @@ const SignUpPage = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
-                  className="block w-full px-3 py-2 pl-10 placeholder-gray-400 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+                  className="block w-full px-3 py-2 pl-10 placeholder-gray-400 bg-gray-700 border border-gray-600 rounded-md shadow-sm  focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                   placeholder="••••••••"
                 />
               </div>
@@ -149,7 +140,7 @@ const SignUpPage = () => {
                       confirmPassword: e.target.value,
                     })
                   }
-                  className="block w-full px-3 py-2 pl-10 placeholder-gray-400 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+                  className="block w-full px-3 py-2 pl-10 placeholder-gray-400 bg-gray-700 border border-gray-600 rounded-md shadow-sm  focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                   placeholder="••••••••"
                 />
               </div>
