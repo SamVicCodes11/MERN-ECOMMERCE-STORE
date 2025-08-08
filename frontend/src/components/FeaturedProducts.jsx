@@ -13,7 +13,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
 
   const handleAddToCart = () => {
     if (!user) {
-      toast.error("Please login to add products to cart", { id: "login" });
+      toast.error("Please login to add products to cart");
       return;
     } else {
       // add to cart
