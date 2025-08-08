@@ -8,6 +8,16 @@ const FeaturedProducts = ({ featuredProducts }) => {
 
   const { addToCart } = useCartStore();
 
+  const handleAddToCart = () => {
+    if (!user) {
+      toast.error("Please login to add products to cart", { id: "login" });
+      return;
+    } else {
+      // add to cart
+      addToCart(product);
+    }
+  };
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) setItemsPerPage(1);
@@ -69,7 +79,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
                         ${product.price.toFixed(2)}
                       </p>
                       <button
-                        onClick={() => addToCart(product)}
+                        onClick={handleAddToCart}
                         className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 
 												flex items-center justify-center"
                       >
